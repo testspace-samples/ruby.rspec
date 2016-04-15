@@ -13,8 +13,10 @@ addons:
 before_install:
   - ./testspace_install.sh
   - export PATH="${HOME}/testspace:${PATH}"
+  - gem install bundler
 
 before_script:
+  - bundle update
   - mkdir -p shippable/codecoverage
   - mkdir -p shippable/testresults
 
