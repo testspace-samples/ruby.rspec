@@ -196,7 +196,8 @@ describe ContactsController do
         end
 
         it "does not change the contact's attributes" do
-          expect(assigns(:contact).reload.attributes).to eq contact.attributes
+          ignored = ['created_at', 'updated_at']
+          expect(assigns(:contact).reload.attributes.except(*ignored)).to eq contact.attributes.except(*ignored)
         end
 
         it "re-renders the edit method" do

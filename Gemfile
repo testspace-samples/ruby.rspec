@@ -41,7 +41,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass', '~> 3.1.1'
 
 group :development, :test do
-  gem "rspec-rails", "~> 3.1.0"
+  gem "rspec-rails", "~> 3.1"
   gem "factory_girl_rails", "~> 4.4.1"
   gem 'guard-rspec', '~> 4.3.1'
   gem 'spring-commands-rspec', '~> 1.0.2'
@@ -52,7 +52,7 @@ group :test do
   gem "capybara", "~> 2.4.3"
   gem "database_cleaner", "~> 1.3.0"
   gem "launchy", "~> 2.4.2"
-  gem "selenium-webdriver", "~> 2.43.0"
+  gem "selenium-webdriver", "~> 2.53"
   gem 'shoulda-matchers', '~> 2.6.2'
 end
 
