@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema version="1.0" manual="0">
+  <root>
+    <suite name="Install.prerequisites" state="1" id=".sh" description="**Install** system prerequisites ">
+      <attributes>
+        <![CDATA[bundle update]]>
+      </attributes>
+    </suite>
+    <suite name="Tests" state="1" id=".sh" description="run **all** of the unit tests">
+      <attributes>
+        <![CDATA[COVERAGE=true rspec --format RspecJunitFormatter --out spec/reports/junitresults.xml
+echo "$PWD/spec/reports/junitresults.xml{test}" > ${self.result}]]>
+      </attributes>
+    </suite>
+    <suite name="Coverage" state="1" id=".sh" description="Code coverage based on latest run. Review the ==Reports== tab for historical tracking">
+      <attributes>
+        <![CDATA[echo "$PWD/coverage/coverage.xml" > ${self.result}]]>
+      </attributes>
+    </suite>
+  </root>
+</schema>

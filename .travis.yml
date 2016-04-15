@@ -1,0 +1,22 @@
+language: ruby
+rvm:
+  - 2.1.1
+
+before_install:
+  # Install Testspace Runner
+  - ./testspace_install.sh
+  - export PATH="${HOME}/testspace:${PATH}"
+  - gem install bundler
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+
+before_script:
+  - bundle update
+
+script:
+  - COVERAGE=true rspec --format RspecJunitFormatter --out spec/reports/junitresults.xml
+
+  # Publish Test Results along with Coverage
+  - testspace config url ${TESTSPACE_USER_TOKEN}:@${TESTSPACE_URL}
+  - testspace publish [Tests]spec/reports/junitresults.xml coverage/coverage.xml

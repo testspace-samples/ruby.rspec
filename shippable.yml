@@ -1,0 +1,28 @@
+language: ruby
+
+rvm:
+  - "2.1.1"
+
+env:
+  global:
+    - secure: KfVSPZZZ1/i/DDf6g4OOfcB1SvxHIP/cy/SGhLWxf7L/sH5EBy4sAkdZnxjH3Ku37p46jbLfqPZoL4fCyVrGYoPBDCCE8qrJo6ftFAxQdAMYFFV/fLaClH+euYCt2aOhR0c5v83M4r5GuUD338dRsGcowHmmRVRrckchIC3w7k1ih9OtLD6YLuQ+P8SvYUy1TWobvWzWT+3whB2uvU3o+2QLJrI+chpwbH+nf1RkvtYhNwVf8TwH8g+vDLVtsBjokUwDkc1zPo8GPylL2XQlQZ2t5Zbs8wJz0JQJvQGkbDBkS0QjRTTu2AL5vu6UwdRWNnB8jt8i7AChBc4ZPh8BZg==
+
+addons:
+  firefox: "29.0"
+
+before_install:
+  - ./testspace_install.sh
+  - export PATH="${HOME}/testspace:${PATH}"
+
+before_script:
+  - mkdir -p shippable/codecoverage
+  - mkdir -p shippable/testresults
+
+script:
+  - testspace config url $TESTSPACE_TOKEN
+  - testspace import .testspace.xml
+  - testspace run
+
+after_script:
+  - cp spec/reports/junitresults.xml shippable/testresults
+  - cp coverage/coverage.xml shippable/codecoverage
