@@ -11,11 +11,8 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
 
-before_script:
-  - bundle update
-
 script:
-  - COVERAGE=true rspec --format RspecJunitFormatter --out spec/reports/junitresults.xml
+  - COVERAGE=true bundle exec rspec --format RspecJunitFormatter --out spec/reports/junitresults.xml
 
   # Publish Test Results along with Coverage
   - testspace config url ${TESTSPACE_USER_TOKEN}:@${TESTSPACE_URL}

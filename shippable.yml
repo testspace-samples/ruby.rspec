@@ -16,7 +16,6 @@ before_install:
   - gem install bundler
 
 before_script:
-  - bundle update
   - mkdir -p shippable/codecoverage
   - mkdir -p shippable/testresults
 
