@@ -9,7 +9,7 @@
     <suite name="Tests" state="1" id=".sh" description="run **all** of the unit tests">
       <attributes>
         <![CDATA[COVERAGE=true rspec --format RspecJunitFormatter --out spec/reports/junitresults.xml
-echo "$PWDspec/reports/junitresults.xml{$PWD/spec}" > ${self.result}]]>
+echo "$PWD/spec/reports/junitresults.xml{$PWD/spec}" > ${self.result}]]>
       </attributes>
     </suite>
     <suite name="Coverage" state="1" id=".sh" description="Code coverage based on latest run. Review the ==Reports== tab for historical tracking">
