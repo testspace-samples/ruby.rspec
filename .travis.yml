@@ -19,4 +19,4 @@ script:
 
   # Publish Test Results along with Coverage
   - testspace config url ${TESTSPACE_USER_TOKEN}:@${TESTSPACE_URL}
-  - testspace publish [Tests]spec/reports/junitresults.xml coverage/coverage.xml
+  - testspace publish [Tests]spec/reports/junitresults.xml{spec} coverage/coverage.xml
