@@ -3,4 +3,7 @@
 
 require File.expand_path('../config/application', __FILE__)
 
+# CI::Reporter RSpec task
+require 'ci/reporter/rake/rspec'
+
 Rails.application.load_tasks
