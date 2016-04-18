@@ -5,10 +5,14 @@ rvm:
 
 env:
   global:
+    - DISPLAY=localhost:1.0
     - secure: gbU+xJjBabYqOkSxtUVwzTlmWXBT4cRqDwVVnvssbP6gNY/eG1r2EqzjGNvq3EjBgE/o5j1cqKBT8+drPnVEho6MgfbLEHEQpKXUpIEVRzFESjU8sBAULZf8auFHHXIjVquR/KZcQMQla7yDsX0+4KRyYXLMM9KZXDVhZoz24QoCTMYHoSkBFgxkbcaapqLpXdVUYhg9ZqjyJH02zb3pq6TLGgfKP1xsBaRMHCIgHFTN8oLVYLyJEi9Lf6gjHG7x16M20OtOfWlzhCkXCjHStCeTh+4wfZCYioepztFeutmW7NYzyaXiO8D22NDIUyBL6sk0J4rAtoWw8AsOjY7T8g==
 
 addons:
   firefox: "29.0"
+
+services:
+  - selenium
 
 before_install:
   - ./testspace_install.sh
@@ -22,8 +26,8 @@ before_script:
 script:
   - testspace config url $TESTSPACE_TOKEN
   - testspace import .testspace.xml
-  - testspace run
+  - xvfb-run --server-args="-screen 0 1024x768x24" testspace run
 
 after_script:
-  - cp spec/reports/junitresults.xml shippable/testresults
+  - cp spec/reports/*.xml shippable/testresults
   - cp coverage/coverage.xml shippable/codecoverage
