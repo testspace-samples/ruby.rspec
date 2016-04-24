@@ -24,9 +24,8 @@ before_script:
   - mkdir -p shippable/testresults
 
 script:
-  - testspace config url $TESTSPACE_TOKEN
-  - testspace import .testspace.xml
-  - xvfb-run --server-args="-screen 0 1024x768x24" testspace run
+  - testspace import .testspace.xml ${TESTSPACE_URL}
+  - xvfb-run --server-args="-screen 0 1024x768x24" testspace run ${TESTSPACE_URL}
 
 after_script:
   - cp spec/reports/*.xml shippable/testresults
