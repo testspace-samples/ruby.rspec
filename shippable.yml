@@ -6,7 +6,7 @@ rvm:
 env:
   global:
     - DISPLAY=localhost:1.0
-    - secure: gbU+xJjBabYqOkSxtUVwzTlmWXBT4cRqDwVVnvssbP6gNY/eG1r2EqzjGNvq3EjBgE/o5j1cqKBT8+drPnVEho6MgfbLEHEQpKXUpIEVRzFESjU8sBAULZf8auFHHXIjVquR/KZcQMQla7yDsX0+4KRyYXLMM9KZXDVhZoz24QoCTMYHoSkBFgxkbcaapqLpXdVUYhg9ZqjyJH02zb3pq6TLGgfKP1xsBaRMHCIgHFTN8oLVYLyJEi9Lf6gjHG7x16M20OtOfWlzhCkXCjHStCeTh+4wfZCYioepztFeutmW7NYzyaXiO8D22NDIUyBL6sk0J4rAtoWw8AsOjY7T8g==
+    - secure: JBy36n/1p9Rq+gVKEFhG/ZoLx4kqSBWQ7/GZVvIqwbpIupVrcoPMWompuijNRx1zOmXpRCZBwSEaMZn5P4ZPGEpdOtJrIt6ePAS2VUeH8ojYrv1uY8jCrpYfe5NAjcvCTl6DsloGsY8r3SdY7gx6/3XmkxvNfsD5u7j08Cw5sGapsSh08ndajQr8HyOTFQCAJhVH7PsoZLd4F5hRHNSPPRWbJ26vuBobmNEyZvDbYdJVyFEetclkA4cs5f82HYV9T5T8RRS5nSPzaEsQ6mniPtM6G74a3D4AM5CrnfmQk1RcWMJJu6oHbg2hMXoZWu7yPgVfAashP1zApwdNSdg04A==
 
 addons:
   firefox: "29.0"
@@ -24,8 +24,8 @@ before_script:
   - mkdir -p shippable/testresults
 
 script:
-  - testspace import .testspace.xml ${TESTSPACE_URL}
-  - xvfb-run --server-args="-screen 0 1024x768x24" testspace run ${TESTSPACE_URL}
+  - testspace import .testspace.xml $TESTSPACE_URL
+  - xvfb-run --server-args="-screen 0 1024x768x24" testspace run $TESTSPACE_URL
 
 after_script:
   - cp spec/reports/*.xml shippable/testresults
