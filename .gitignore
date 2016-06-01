@@ -18,3 +18,5 @@
 # Tests and Coverage reports
 /coverage
 /spec/reports
+
+/vendor
