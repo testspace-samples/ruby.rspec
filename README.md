@@ -11,7 +11,7 @@ Sample demonstrates techniques for using Testspace with Ruby code and the [`rspe
 
 ***
 
-In order to run this sample you will need a host workstation with installed `ruby 2.1.1`, `bundler` and `firefox`.
+In order to run this sample you will need a host workstation with installed `ruby 2.3.0`, `bundler` and `firefox`.
 
 <pre>
 bundle update
