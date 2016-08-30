@@ -1,0 +1,5 @@
+## Addding some comments here
+tmp/rubocop.txt
+tmp/brakeman_checkstyle.xml
+[Tests]$CI_REPORTS/SPEC*.xml{spec} 
+coverage/coverage.xml
