@@ -1,18 +1,22 @@
-language: ruby
+language: 
+  - ruby
+  
 rvm:
-  - 2.1.1
+  - 2.3.1
 
 before_install:
-  # Install Testspace Runner
-  - ./testspace_install.sh
-  - export PATH="${HOME}/testspace:${PATH}"
-  - gem install bundler
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
 
 script:
-  - COVERAGE=true bundle exec rake ci:setup:rspec spec
+  - gem install bundler
+  - bundle exec rubocop --format emacs --out tmp/rubocop.txt || true
+  - bundle exec brakeman -o tmp/brakeman.json
+  - bundle exec brakeman_translate_checkstyle_format translate --file="tmp/brakeman.json" > tmp/brakeman_checkstyle.xml
 
-  # Publish Test Results along with Coverage
-  - testspace publish [Tests]spec/reports/*.xml{spec} coverage/coverage.xml ${TESTSPACE_URL}
+  - export CI_REPORTS=$PWD/spec/reports
+  - COVERAGE=true bundle exec rake ci:setup:rspec spec
+  
+  - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
+  - testspace publish @.testspace $TESTSPACE_TOKEN/${TRAVIS_BRANCH}#travis.Build.${TRAVIS_BUILD_NUMBER}

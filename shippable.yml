@@ -1,32 +1,28 @@
 language: ruby
 
 rvm:
-  - "2.1.1"
+  - "2.3.1"
 
 env:
   global:
     - DISPLAY=localhost:1.0
-    - secure: JBy36n/1p9Rq+gVKEFhG/ZoLx4kqSBWQ7/GZVvIqwbpIupVrcoPMWompuijNRx1zOmXpRCZBwSEaMZn5P4ZPGEpdOtJrIt6ePAS2VUeH8ojYrv1uY8jCrpYfe5NAjcvCTl6DsloGsY8r3SdY7gx6/3XmkxvNfsD5u7j08Cw5sGapsSh08ndajQr8HyOTFQCAJhVH7PsoZLd4F5hRHNSPPRWbJ26vuBobmNEyZvDbYdJVyFEetclkA4cs5f82HYV9T5T8RRS5nSPzaEsQ6mniPtM6G74a3D4AM5CrnfmQk1RcWMJJu6oHbg2hMXoZWu7yPgVfAashP1zApwdNSdg04A==
+    - secure: DNzaZMM7AN9FZOHnd7TslhOPM/DuogIr4bzbkMWde6GhKUslTGcjodpS/G8FUm7oIlP13ZM/yTN3dNw1Koy+1c6515gLh6b3Z1x0FpKNWN6401jPJCleZGo6yXa//hfqN0L1lt1rVEHzuxu+6d5gPA35aQRhELF4N1t9Gnry1vSFB8mLYg0ro47SvyDRk1e9faNXyjPTr9az3CKDF9jR/F3PPveF1zbGWO0ko06+XBBJbt3pT3G5mzoz2gnNyR81aD0hLQQgx5J0uuhmqMsaomYBLsI+176eP8Ax8jOpxs1rkC5528a0NxxTFvyNvdAeX0CsIVc1+gJkXwR1k2g6Vw==
 
 addons:
-  firefox: "29.0"
+  firefox: "46.0"
 
 services:
   - selenium
 
-before_install:
-  - ./testspace_install.sh
-  - export PATH="${HOME}/testspace:${PATH}"
-  - gem install bundler
-
-before_script:
-  - mkdir -p shippable/codecoverage
-  - mkdir -p shippable/testresults
-
 script:
-  - testspace import .testspace.xml $TESTSPACE_URL
-  - xvfb-run --server-args="-screen 0 1024x768x24" testspace run $TESTSPACE_URL
+  - bundle install
+  - bundle exec rubocop --format emacs --out tmp/rubocop.txt || true
+  - bundle exec brakeman -o tmp/brakeman.json
+  - bundle exec brakeman_translate_checkstyle_format translate --file="tmp/brakeman.json" > tmp/brakeman_checkstyle.xml
 
-after_script:
-  - cp spec/reports/*.xml shippable/testresults
-  - cp coverage/coverage.xml shippable/codecoverage
+  - export CI_REPORTS=$PWD/spec/reports
+  - COVERAGE=true xvfb-run --server-args="-screen 0 1024x768x24" bundle exec rake ci:setup:rspec spec
+
+  - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
+  - testspace publish @.testspace $TESTSPACE_TOKEN/${BRANCH}#ship.Build.${BUILD_NUMBER}
+
