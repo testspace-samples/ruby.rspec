@@ -26,6 +26,7 @@ In order to run this sample you will need a host workstation that supports the [
 Running Static Analysis:
 
 <pre>
+bundle install
 bundle exec rubocop --format emacs --out tmp/rubocop.txt
 bundle exec brakeman -o tmp/brakeman.json
 bundle exec brakeman_translate_checkstyle_format translate --file="tmp/brakeman.json" > tmp/brakeman_checkstyle.xml
@@ -34,7 +35,6 @@ bundle exec brakeman_translate_checkstyle_format translate --file="tmp/brakeman.
 Running Tests with Code Coverage:
 
 <pre>
-bundle install
 export CI_REPORTS=$PWD/spec/reports
 COVERAGE=true xvfb-run --server-args="-screen 0 1024x768x24" bundle exec rake ci:setup:rspec spec
 </pre>
@@ -56,5 +56,3 @@ To replicate this sample:
     - `credentials` set to `username:password` or your [access token](http://help.testspace.com/using-your-organization:user-settings).
     - `my-org-name.testspace.com/my-project/my-space` based on your subdomain, project, and space names. Refer [here](http://help.testspace.com/reference:runner-reference#login-credentials) for more details. 
   
-   
- 
