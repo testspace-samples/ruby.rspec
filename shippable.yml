@@ -6,7 +6,7 @@ rvm:
 env:
   global:
     - DISPLAY=localhost:1.0
-    - secure: DNzaZMM7AN9FZOHnd7TslhOPM/DuogIr4bzbkMWde6GhKUslTGcjodpS/G8FUm7oIlP13ZM/yTN3dNw1Koy+1c6515gLh6b3Z1x0FpKNWN6401jPJCleZGo6yXa//hfqN0L1lt1rVEHzuxu+6d5gPA35aQRhELF4N1t9Gnry1vSFB8mLYg0ro47SvyDRk1e9faNXyjPTr9az3CKDF9jR/F3PPveF1zbGWO0ko06+XBBJbt3pT3G5mzoz2gnNyR81aD0hLQQgx5J0uuhmqMsaomYBLsI+176eP8Ax8jOpxs1rkC5528a0NxxTFvyNvdAeX0CsIVc1+gJkXwR1k2g6Vw==
+    - secure: SS9SmQHVpnMJSeaiIH1DdP4Wm0csLLbn9KaxN4JAVe8CU6Grc6zumDbrdz70vw64ltH4op76Au3j02GvYDVK14e7zJjqJ5UHqcRp3ECik5aehZ4g0CtgRrx70jh0G+NsJKCXIkeMRiDvk3v0jVsJ0k/S7eXgqgg2TyR8NqnW3FkcWnaf8piE7IJWcDcspLtsP4/+oJb2EY7DKsaooWHgJ6OwBXQkIZCVIkuQpFwF9YkT6HE++9/UPLIOgUnLScoKoYKq+1IW7/DZwVdb2l+Md1mivrZ+5EPVDf4NfomcAaBr09AwdHBcPtBAyXzEaiGkO9n5xayoHPX8/ooK6loIHg==
 
 addons:
   firefox: "46.0"
