@@ -7,17 +7,18 @@ Sample demonstrates techniques for using Testspace with Ruby code and the [`rspe
 
 ***
 Using Multiple Online CI Services:
+[![Build Status](https://travis-ci.org/testspace-samples/ruby.rspec.svg?branch=master)](https://travis-ci.org/testspace-samples/ruby.rspec)
+[![CircleCI](https://circleci.com/gh/testspace-samples/ruby.rspec.svg?style=svg)](https://circleci.com/gh/testspace-samples/ruby.rspec)
+[![Run Status](https://api.shippable.com/projects/5710e82e2a8192902e1c2199/badge?branch=master)](https://app.shippable.com/projects/5710e82e2a8192902e1c2199)
 
-[![Build Status](https://travis-ci.org/munderseth/ruby.rspec.svg?branch=master)](https://travis-ci.org/munderseth/ruby.rspec)
-[![CircleCI](https://circleci.com/gh/munderseth/ruby.rspec.svg?style=svg)](https://circleci.com/gh/munderseth/ruby.rspec)
-[![Run Status](https://api.shippable.com/projects/57c59c86d69e8d0f0053cfd4/badge?branch=master)](https://app.shippable.com/projects/57c59c86d69e8d0f0053cfd4)
 
 ***
 Publishing **Test Content** using www.testspace.com.
 
-[![Space Health](http://munderseth.stridespace.com/projects/271/spaces/906/badge)](http://munderseth.stridespace.com/projects/271/spaces/906 "Test Cases")
-[![Space Metric](http://munderseth.stridespace.com/projects/271/spaces/906/metrics/334/badge)](http://munderseth.stridespace.com/spaces/906/schema/Code%20Coverage "Code Coverage (lines)")
-[![Space Metric](http://munderseth.stridespace.com/projects/271/spaces/906/metrics/335/badge)](http://munderseth.stridespace.com/spaces/906/schema/Static%20Analysis "Static Analysis (issues)")
+[![Space Health](https://samples.testspace.com/projects/116/spaces/436/badge)](https://samples.testspace.com/projects/116/spaces/436 "Test Cases")
+[![Space Metric](https://samples.testspace.com/projects/116/spaces/436/metrics/257/badge)](https://samples.testspace.com/spaces/436/schema/Code%20Coverage "Code Coverage (lines)")
+[![Space Metric](https://samples.testspace.com/projects/116/spaces/436/metrics/258/badge)](https://samples.testspace.com/spaces/436/schema/Static%20Analysis "Static Analysis (issues)")
+
 
 ***
 
@@ -47,12 +48,13 @@ testspace @.testspace $TESTSPACE_TOKEN/$BRANCH_NAME
 </pre> 
 
 
-Checkout the [Space](http://munderseth.stridespace.com/projects/ruby.rspec). 
+Checkout the [Space](https://samples.testspace.com/projects/ruby.rspec). 
 
 ***
 To replicate this sample: 
   - Account at www.testspace.com.
-  - Environment Variable called `TESTSPACE_TOKEN`:
+  - CI Environment Variable called **TESTSPACE_TOKEN** required:
+    -  `TESTSPACE_TOKEN` = `credentials@my-org-name.testspace.com/my-project`
     - `credentials` set to `username:password` or your [access token](http://help.testspace.com/using-your-organization:user-settings).
-    - `my-org-name.testspace.com/my-project/my-space` based on your subdomain, project, and space names. Refer [here](http://help.testspace.com/reference:runner-reference#login-credentials) for more details. 
-  
+    - `my-org-name.testspace.com/my-project` based on your *subdomain* and *project* names. Refer [here](http://help.testspace.com/reference:runner-reference#login-credentials) for more details. 
+    
