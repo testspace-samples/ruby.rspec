@@ -48,6 +48,14 @@ group :development, :test do
   gem 'ci_reporter_rspec'
   gem 'simplecov', :require => false
   gem 'simplecov-cobertura'
+  
+  # A Ruby static code analyzer.
+  gem 'rubocop', :require => false
+  # A static analysis security vulnerability scanner for Ruby on Rails.
+  gem 'brakeman', :require => false
+  # Translate brakeman json format into Checkstyle format.
+  gem 'brakeman_translate_checkstyle_format', :require => false
+
 end
 
 group :test do
