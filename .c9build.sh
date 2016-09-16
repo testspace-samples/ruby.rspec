@@ -15,4 +15,4 @@ COVERAGE=true xvfb-run --server-args="-screen 0 1024x768x24" bundle exec rake ci
 
 # Publish
 curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
-testspace publish @.testspace master.c9
+testspace @.testspace master.c9
