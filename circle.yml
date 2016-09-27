@@ -9,9 +9,8 @@ test:
     - bundle exec brakeman -o tmp/brakeman.json
     - bundle exec brakeman_translate_checkstyle_format translate --file="tmp/brakeman.json" > tmp/brakeman_checkstyle.xml
 
-    - export CI_REPORTS=$CIRCLE_TEST_REPORTS
     - RAILS_ENV=test COVERAGE=true bundle exec rake ci:setup:rspec spec
     
   post:
     - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
-    - testspace @.testspace $TESTSPACE_TOKEN/${CIRCLE_BRANCH}#circle.Build.${CIRCLE_BUILD_NUM}
+    - CI_REPORTS=$CIRCLE_TEST_REPORTS testspace @.testspace $TESTSPACE_TOKEN/${CIRCLE_BRANCH}#circle.Build.${CIRCLE_BUILD_NUM}
