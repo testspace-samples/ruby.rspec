@@ -14,7 +14,8 @@ addons:
 services:
   - selenium
 
-script:
+build:
+ ci:
   - bundle install
   - bundle exec rubocop --format emacs --out tmp/rubocop.txt || true
   - bundle exec brakeman -o tmp/brakeman.json
@@ -22,7 +23,7 @@ script:
 
   - COVERAGE=true xvfb-run --server-args="-screen 0 1024x768x24" bundle exec rake ci:setup:rspec spec
 
-after_script:
+ post_ci:
   - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
   - CI_REPORTS=$PWD/spec/reports testspace @.testspace $TESTSPACE_TOKEN/${BRANCH}#ship.Build.${BUILD_NUMBER}
 
