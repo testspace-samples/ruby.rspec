@@ -7,6 +7,7 @@ Sample demonstrates techniques for using Testspace with Ruby code and the [`rspe
 
 ***
 Using Multiple Online CI Services:
+
 [![Build Status](https://travis-ci.org/testspace-samples/ruby.rspec.svg?branch=master)](https://travis-ci.org/testspace-samples/ruby.rspec)
 [![CircleCI](https://circleci.com/gh/testspace-samples/ruby.rspec.svg?style=svg)](https://circleci.com/gh/testspace-samples/ruby.rspec)
 [![Run Status](https://api.shippable.com/projects/5710e82e2a8192902e1c2199/badge?branch=master)](https://app.shippable.com/projects/5710e82e2a8192902e1c2199)
