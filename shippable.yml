@@ -6,8 +6,8 @@ rvm:
 env:
   global:
     - DISPLAY=localhost:1.0
-    - secure: SS9SmQHVpnMJSeaiIH1DdP4Wm0csLLbn9KaxN4JAVe8CU6Grc6zumDbrdz70vw64ltH4op76Au3j02GvYDVK14e7zJjqJ5UHqcRp3ECik5aehZ4g0CtgRrx70jh0G+NsJKCXIkeMRiDvk3v0jVsJ0k/S7eXgqgg2TyR8NqnW3FkcWnaf8piE7IJWcDcspLtsP4/+oJb2EY7DKsaooWHgJ6OwBXQkIZCVIkuQpFwF9YkT6HE++9/UPLIOgUnLScoKoYKq+1IW7/DZwVdb2l+Md1mivrZ+5EPVDf4NfomcAaBr09AwdHBcPtBAyXzEaiGkO9n5xayoHPX8/ooK6loIHg==
-
+    - secure: P1IXQO5Q5aT9SLK0jqCe+y5tt0EarCtc/9FoWcgGGHbEW01RDPBKZCdnqd2Sqe38NDd4YE39lxBSxDkWT6M8Qkg5k1iQNrDOW6ES3cyMQrgpIFsvRegaJUWKGDdZaU+ck+7+QQimxuxeZHMjpBJin0D/Pdeb6o4xciuV8mQlpUDAiaTPxJ+NcLyJvi7MuTPeUl+NXr6zujQUsg94W/+5MrrRxiYRqm002alEHeECXThxVoGCKzpOOQA0bACni7Rjb7rI1leexD1bHd3xnegxfYAmwYGRNqzegav7gS0YRGohVAtDFZQV0iQnMpfUkHKsTI2NW+mFiVj8RDZabWjIpw==
+    
 addons:
   firefox: "46.0"
 
@@ -25,5 +25,6 @@ build:
 
  post_ci:
   - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
-  - CI_REPORTS=$PWD/spec/reports testspace @.testspace $TESTSPACE_TOKEN/${BRANCH}#ship.Build.${BUILD_NUMBER}
+  - CI_REPORTS=$PWD/test/reports testspace @.testspace $TESTSPACE_TOKEN/${SHIPPABLE_REPO_SLUG/\//:}/${BRANCH}#ship.Build.${BUILD_NUMBER}
+
 

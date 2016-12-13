@@ -13,5 +13,11 @@ bundle exec brakeman_translate_checkstyle_format translate --file="tmp/brakeman.
 COVERAGE=true xvfb-run --server-args="-screen 0 1024x768x24" bundle exec rake ci:setup:rspec spec
 
 # Publish
-curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
-CI_REPORTS=$PWD/spec/reports testspace @.testspace master.c9
+
+## Requires TESTSPACE_TOKEN = $ACCESS_TOKEN:@samples.testspace.com
+
+BRANCH_NAME=`git symbolic-ref --short HEAD`
+GIT_URL=`git remote show origin -n | grep Fetch\ URL: | sed 's/.*URL: //'`
+REPO_SLUG=`echo ${GIT_URL#*github.com?} | sed 's/.git//'`
+
+CI_REPORTS=$PWD/spec/reports testspace @.testspace $TESTSPACE_TOKEN/${REPO_SLUG/\//:}/${BRANCH_NAME}#c9.Build

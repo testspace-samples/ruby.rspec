@@ -1,4 +1,5 @@
-[![Testspace](http://www.testspace.com/public/img/testspace_logo.png)](http://www.testspace.com)
+[![Testspace](http://www.testspace.com/img/Testspace.png)](http://www.testspace.com)
+
 ***
 
 ## Ruby/RSpec sample for demonstrating Testspace based on the [everydayrails's  repo](https://github.com/everydayrails/rails-4-1-rspec-3-0)
@@ -16,10 +17,9 @@ Using Multiple Online CI Services:
 ***
 Publishing **Test Content** using www.testspace.com.
 
-[![Space Health](https://samples.testspace.com/projects/116/spaces/436/badge)](https://samples.testspace.com/projects/116/spaces/436 "Test Cases")
-[![Space Metric](https://samples.testspace.com/projects/116/spaces/436/metrics/257/badge)](https://samples.testspace.com/spaces/436/schema/Code%20Coverage "Code Coverage (lines)")
-[![Space Metric](https://samples.testspace.com/projects/116/spaces/436/metrics/258/badge)](https://samples.testspace.com/spaces/436/schema/Static%20Analysis "Static Analysis (issues)")
-
+[![Space Health](https://samples.testspace.com/projects/158/spaces/726/badge)](https://samples.testspace.com/projects/158/spaces/726 "Test Cases")
+[![Space Metric](https://samples.testspace.com/projects/158/spaces/726/metrics/658/badge)](https://samples.testspace.com/spaces/726/schema/Code%20Coverage "Code Coverage (lines)")
+[![Space Metric](https://samples.testspace.com/projects/158/spaces/726/metrics/659/badge)](https://samples.testspace.com/spaces/726/schema/Static%20Analysis "Static Analysis (issues)")
 
 ***
 
@@ -45,16 +45,17 @@ Publishing Results using **Testspace**:
 
 <pre>
 curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
-testspace @.testspace $TESTSPACE_TOKEN/$BRANCH_NAME
+testspace @.testspace $TESTSPACE_TOKEN/$GITHUB_ORG:$REPO_NAME/$BRANCH_NAME#Build_Number
 </pre> 
 
 
-Checkout the [Space](https://samples.testspace.com/projects/ruby.rspec). 
+Checkout the published [Test Content](https://samples.testspace.com/projects/testspace-samples:ruby.rspec). Note that the `.testspace` file contains the [set of files](http://help.testspace.com/how-to:publish-content#publishing-via-content-list-file) to publish. 
+
 
 ***
+
 To replicate this sample: 
-  - Account at www.testspace.com.
-  - CI Environment Variable called **TESTSPACE_TOKEN** required:
-    -  `TESTSPACE_TOKEN` = `credentials@my-org-name.testspace.com/my-project`
+  - Setup account at www.testspace.com.
+  - Create a CI Environment Variable called **TESTSPACE_TOKEN**:
+    -  `TESTSPACE_TOKEN` = `credentials@Your-Org-Name.testspace.com`
     - `credentials` set to `username:password` or your [access token](http://help.testspace.com/reference:client-reference#login-credentials).
-    - `my-org-name.testspace.com/my-project` based on your *organization* (subdomain) and *project* names.  
