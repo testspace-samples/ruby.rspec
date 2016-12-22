@@ -24,8 +24,10 @@ build:
   - COVERAGE=true xvfb-run --server-args="-screen 0 1024x768x24" bundle exec rake ci:setup:rspec spec
 
 # Requires TESTSPACE_TOKEN environment variable. Also note that CI_REPORTS is referenced in .testspace.txt 
- post_ci:
-  - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
-  - CI_REPORTS=$PWD/spec/reports testspace @.testspace.txt $TESTSPACE_TOKEN/${SHIPPABLE_REPO_SLUG/\//:}/${BRANCH}#ship.Build.${BUILD_NUMBER}
+ on_success:
+   - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
+   - CI_REPORTS=$PWD/test/reports testspace @.testspace.txt $TESTSPACE_TOKEN/${SHIPPABLE_REPO_SLUG/\//:}/${BRANCH}#ship.Build.${BUILD_NUMBER}
 
-
+ on_failure:
+   - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
+   - CI_REPORTS=$PWD/test/reports testspace @.testspace.txt $TESTSPACE_TOKEN/${SHIPPABLE_REPO_SLUG/\//:}/${BRANCH}#ship.Build.${BUILD_NUMBER}
