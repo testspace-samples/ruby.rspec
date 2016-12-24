@@ -41,7 +41,7 @@ export CI_REPORTS=$PWD/spec/reports
 COVERAGE=true xvfb-run --server-args="-screen 0 1024x768x24" bundle exec rake ci:setup:rspec spec
 </pre>
 
-Publishing Results using **Testspace**: 
+Pushing Content using **Testspace client**: 
 
 <pre>
 curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
