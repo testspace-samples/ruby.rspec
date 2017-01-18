@@ -18,4 +18,4 @@ RUN curl -sSL https://get.rvm.io | bash -s stable
 
 RUN ["/bin/bash", "-l", "-c", "rvm requirements; rvm install 2.3.3; gem install bundler --no-ri --no-rdoc"]
 
-RUN apt-get install bundler
+RUN apt-get install -y bundler
