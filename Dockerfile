@@ -1,4 +1,4 @@
-FROM ruby:2.3.3
+FROM docker-ubuntu-ruby:2.3.3
 
 RUN apt-get update && apt-get install -y software-properties-common
 RUN add-apt-repository ppa:mozillateam/firefox-next -y
