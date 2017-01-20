@@ -36,5 +36,9 @@ RUN echo 'eval "$(rbenv init -)"' >> .bashrc
 
 RUN rbenv install 2.3.3
 RUN rbenv global 2.3.3
+
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        rubygems \
 RUN echo "gem: --no-document" > ~/.gemrc
 RUN gem install bundler
