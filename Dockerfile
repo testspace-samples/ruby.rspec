@@ -7,6 +7,7 @@ RUN apt-get update \
         build-essential \
         curl \
         git \
+        libffi-dev \
         zlib1g-dev \
         libssl-dev \
         libreadline-dev \
@@ -20,7 +21,8 @@ RUN apt-get update \
         libqtwebkit-dev \
         xvfb \
         memcached \
-        ca-certificates
+        ca-certificates \
+        firefox
 
 RUN apt-get clean
 
@@ -32,6 +34,6 @@ ENV PATH /root/.rbenv/bin:$PATH
 RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh # or /etc/profile
 RUN echo 'eval "$(rbenv init -)"' >> .bashrc
 
-RUN rbenv install 2.2.0
+RUN rbenv install 2.3.3
 RUN echo "gem: --no-document" > ~/.gemrc
 RUN gem install bundler
