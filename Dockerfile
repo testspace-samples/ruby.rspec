@@ -35,5 +35,6 @@ RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh # or /etc/profile
 RUN echo 'eval "$(rbenv init -)"' >> .bashrc
 
 RUN rbenv install 2.3.3
+RUN rbenv global 2.3.3
 RUN echo "gem: --no-document" > ~/.gemrc
 RUN gem install bundler
