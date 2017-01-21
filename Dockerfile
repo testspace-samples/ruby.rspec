@@ -20,7 +20,6 @@ RUN apt-get update \
         qtbase5-dev \
         qt5-qmake \
         libqtwebkit-dev \
-        xvfb \
         memcached \
         ca-certificates \
         firefox
