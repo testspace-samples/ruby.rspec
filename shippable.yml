@@ -6,8 +6,7 @@ rvm:
 env:
   global:
     - DISPLAY=localhost:1.0
-    - secure: P1IXQO5Q5aT9SLK0jqCe+y5tt0EarCtc/9FoWcgGGHbEW01RDPBKZCdnqd2Sqe38NDd4YE39lxBSxDkWT6M8Qkg5k1iQNrDOW6ES3cyMQrgpIFsvRegaJUWKGDdZaU+ck+7+QQimxuxeZHMjpBJin0D/Pdeb6o4xciuV8mQlpUDAiaTPxJ+NcLyJvi7MuTPeUl+NXr6zujQUsg94W/+5MrrRxiYRqm002alEHeECXThxVoGCKzpOOQA0bACni7Rjb7rI1leexD1bHd3xnegxfYAmwYGRNqzegav7gS0YRGohVAtDFZQV0iQnMpfUkHKsTI2NW+mFiVj8RDZabWjIpw==
-    
+
 addons:
   firefox: "46.0"
 
@@ -15,19 +14,18 @@ services:
   - selenium
 
 build:
- ci:
-  - bundle install
-  - bundle exec rubocop --format emacs --out tmp/rubocop.txt || true
-  - bundle exec brakeman -o tmp/brakeman.json
-  - bundle exec brakeman_translate_checkstyle_format translate --file="tmp/brakeman.json" > tmp/brakeman_checkstyle.xml
+  ci:
+   - mkdir -p $HOME/bin
+   - curl -fsSL https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | tar -zxvf- -C $HOME/bin
+   - testspace config url samples.testspace.com
+   - bundle install
+   - bundle exec rubocop --format emacs --out tmp/rubocop.txt || true
+   - bundle exec brakeman -o tmp/brakeman.json
+   - bundle exec brakeman_translate_checkstyle_format translate --file="tmp/brakeman.json" > tmp/brakeman_checkstyle.xml
+   - COVERAGE=true xvfb-run --server-args="-screen 0 1024x768x24" bundle exec rake ci:setup:rspec spec
 
-  - COVERAGE=true xvfb-run --server-args="-screen 0 1024x768x24" bundle exec rake ci:setup:rspec spec
+  on_success:
+   - CI_REPORTS=$PWD/spec/reports testspace @.testspace.txt
 
-# Requires TESTSPACE_TOKEN environment variable. Also note that CI_REPORTS is referenced in .testspace.txt 
- on_success:
-   - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
-   - CI_REPORTS=$PWD/spec/reports testspace @.testspace.txt $TESTSPACE_TOKEN/${SHIPPABLE_REPO_SLUG/\//:}/${BRANCH}#ship.Build.${BUILD_NUMBER}
-
- on_failure:
-   - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
-   - CI_REPORTS=$PWD/spec/reports testspace @.testspace.txt $TESTSPACE_TOKEN/${SHIPPABLE_REPO_SLUG/\//:}/${BRANCH}#ship.Build.${BUILD_NUMBER}
+  on_failure:
+   - CI_REPORTS=$PWD/spec/reports testspace @.testspace.txt

@@ -9,16 +9,17 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
 
+before_script:
+  - mkdir -p $HOME/bin
+  - curl -fsSL https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | tar -zxvf- -C $HOME/bin
+  - testspace config url samples.testspace.com
+  
 script:
   - gem install bundler
   - bundle exec rubocop --format emacs --out tmp/rubocop.txt || true
   - bundle exec brakeman -o tmp/brakeman.json
   - bundle exec brakeman_translate_checkstyle_format translate --file="tmp/brakeman.json" > tmp/brakeman_checkstyle.xml
-
   - COVERAGE=true bundle exec rake ci:setup:rspec spec
   
-# Requires TESTSPACE_TOKEN environment variable. Also note that CI_REPORTS is referenced in .testspace.txt   
-after_script:
-  - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
-  - CI_REPORTS=$PWD/spec/reports testspace @.testspace.txt $TESTSPACE_TOKEN/${TRAVIS_REPO_SLUG/\//:}/${TRAVIS_BRANCH}#travis.Build.${TRAVIS_BUILD_NUMBER}
-    
+after_script:  
+  - CI_REPORTS=$PWD/spec/reports testspace @.testspace.txt
