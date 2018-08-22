@@ -1,5 +1,5 @@
 ## Addding some comments here
 tmp/rubocop.txt{lint}
 tmp/brakeman_checkstyle.xml
-[Tests]$CI_REPORTS/SPEC*.xml{spec} 
+[Tests]spec/reports/SPEC*.xml{spec}
 coverage/coverage.xml
