@@ -24,8 +24,5 @@ build:
    - bundle exec brakeman_translate_checkstyle_format translate --file="tmp/brakeman.json" > tmp/brakeman_checkstyle.xml
    - COVERAGE=true xvfb-run --server-args="-screen 0 1024x768x24" bundle exec rake ci:setup:rspec spec
 
-  on_success:
-   - CI_REPORTS=$PWD/spec/reports testspace @.testspace.txt
-
-  on_failure:
+  always:
    - CI_REPORTS=$PWD/spec/reports testspace @.testspace.txt
