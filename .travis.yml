@@ -1,15 +1,16 @@
+dist: xenial
+
 language: 
   - ruby
-  
 rvm:
   - 2.3.1
+
+services:
+  - xvfb
 addons:
   firefox: "45.0"
   
 before_script:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
   - mkdir -p $HOME/bin
   - curl -fsSL https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | tar -zxvf- -C $HOME/bin
   - testspace config url samples.testspace.com
