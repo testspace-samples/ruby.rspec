@@ -8,15 +8,15 @@ Sample demonstrates techniques for using Testspace with Ruby code and the [`rspe
 
   * Using a Testspace Project that is `connected` with this GitHub Repo
   * Using 3 Online CI services for demonstration purposes only
-  * Can review the Results at [testspace-samples:ruby.rspec](https://samples.testspace.com/projects/testspace-samples:ruby.rspec)  
-  * Refer to our [Getting Started](https://help.testspace.com/getting-started) help articles for more information
+  * Can review the Results at [testspace-samples:ruby.rspec](https://samples.testspace.com/projects/testspace-samples:ruby.rspec)
+  * Refer to our [Help](https://help.testspace.com/) for more information
 
 ***
 Using Multiple Online CI Services:
 
+![Build](https://github.com/testspace-samples/ruby.rspec/workflows/Build/badge.svg)
 [![Build Status](https://travis-ci.org/testspace-samples/ruby.rspec.svg?branch=master)](https://travis-ci.org/testspace-samples/ruby.rspec)
 [![CircleCI](https://circleci.com/gh/testspace-samples/ruby.rspec.svg?style=svg)](https://circleci.com/gh/testspace-samples/ruby.rspec)
-[![Run Status](https://api.shippable.com/projects/5710e82e2a8192902e1c2199/badge?branch=master)](https://app.shippable.com/projects/5710e82e2a8192902e1c2199)
 
 
 ***
@@ -27,7 +27,7 @@ Publishing **Test Content** using www.testspace.com.
 [![Space Metric](https://samples.testspace.com/spaces/726/metrics/659/badge?token=9cc9e80131a7f91629c83ea332f652c1a13bd66d)](https://samples.testspace.com/spaces/726/schema/Static%20Analysis "Static Analysis (issues)")
 
 ***
-Download and configure the Testspace client 
+Download and configure the Testspace client
 
 <pre>
 mkdir -p $HOME/bin
@@ -43,7 +43,7 @@ bundle install
 bundle exec rubocop --format emacs --out tmp/rubocop.txt
 bundle exec brakeman -o tmp/brakeman.json
 bundle exec brakeman_translate_checkstyle_format translate --file="tmp/brakeman.json" > tmp/brakeman_checkstyle.xml
-</pre> 
+</pre>
 
 Running Tests with Code Coverage:
 
