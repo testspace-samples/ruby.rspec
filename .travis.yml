@@ -1,6 +1,6 @@
-dist: xenial
+dist: bionic
 
-language: 
+language:
   - ruby
 rvm:
   - 2.3
@@ -8,19 +8,21 @@ rvm:
 services:
   - xvfb
 addons:
-  firefox: "45.0"
-  
+  firefox: "latest"
+  apt:
+    packages:
+      firefox-geckodriver
+
 before_script:
   - mkdir -p $HOME/bin
   - curl -fsSL https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | tar -zxvf- -C $HOME/bin
   - testspace config url samples.testspace.com
-  
+
 script:
-  - gem install bundler
   - bundle exec rubocop --format emacs --out tmp/rubocop.txt || true
   - bundle exec brakeman -o tmp/brakeman.json
   - bundle exec brakeman_translate_checkstyle_format translate --file="tmp/brakeman.json" > tmp/brakeman_checkstyle.xml
   - COVERAGE=true bundle exec rake ci:setup:rspec spec
-  
-after_script:  
+
+after_script:
   - CI_REPORTS=$PWD/spec/reports testspace @.testspace.txt

@@ -48,7 +48,7 @@ group :development, :test do
   gem 'ci_reporter_rspec'
   gem 'simplecov', :require => false
   gem 'simplecov-cobertura'
-  
+
   # A Ruby static code analyzer.
   gem 'rubocop', :require => false
   # A static analysis security vulnerability scanner for Ruby on Rails.
@@ -63,7 +63,7 @@ group :test do
   gem "capybara", "~> 2.4.3"
   gem "database_cleaner", "~> 1.3.0"
   gem "launchy", "~> 2.4.2"
-  gem "selenium-webdriver", "~> 2.53.4"
+  gem "selenium-webdriver", "~> 3.14.0"
   gem 'shoulda-matchers', '~> 2.6.2'
 end
 
