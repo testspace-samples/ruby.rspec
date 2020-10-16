@@ -1,4 +1,4 @@
-dist: xenial
+dist: bionic
 
 language:
   - ruby
@@ -8,7 +8,7 @@ rvm:
 services:
   - xvfb
 addons:
-  firefox: "45.0"
+  firefox: "78.0"
 
 before_script:
   - mkdir -p $HOME/bin
