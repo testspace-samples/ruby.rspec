@@ -40,6 +40,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootstrap-sass', '~> 3.1.1'
 
+gem 'coveralls', require: false
+
 group :development, :test do
   gem "rspec-rails", "~> 3.1"
   gem "factory_girl_rails", "~> 4.4.1"
