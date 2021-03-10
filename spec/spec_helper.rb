@@ -15,13 +15,10 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require 'simplecov'
-require 'coveralls'
-Coveralls.wear!
-
 # Code coverage
 if ENV['COVERAGE']
   require 'simplecov'
+  require 'coveralls'
 end
 
 RSpec.configure do |config|
