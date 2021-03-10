@@ -18,6 +18,7 @@
 # Code coverage
 if ENV['COVERAGE']
   require 'simplecov'
+  require 'coveralls'
 end
 
 RSpec.configure do |config|
