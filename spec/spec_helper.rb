@@ -19,6 +19,7 @@
 if ENV['COVERAGE']
   require 'simplecov'
   require 'coveralls'
+  Coveralls.wear!
 end
 
 RSpec.configure do |config|
