@@ -25,4 +25,4 @@ script:
   - COVERAGE=true bundle exec rake ci:setup:rspec spec
 
 after_script:
-  - CI_REPORTS=$PWD/spec/reports testspace @.testspace.txt --link=codecov
+  - CI_REPORTS=$PWD/spec/reports testspace @.testspace.txt --link=coveralls
