@@ -33,9 +33,16 @@ jobs:
           bundle exec brakeman -o tmp/brakeman.json
           bundle exec brakeman_translate_checkstyle_format translate --file="tmp/brakeman.json" > tmp/brakeman_checkstyle.xml
       - name: Test
+        env:
+          CI_NAME: github
+          CI_BUILD_NUMBER: ${{ env.GITHUB_RUN_NUMBER }}
+          CI_JOB_ID: ${{ env.GITHUB_RUN_ID }}
+          CI_BUILD_URL: "${{ env.GITHUB_SERVER_URL }}/${{ env.GITHUB_REPOSITORY }}/actions/runs/${{ env.GITHUB_RUN_ID }}"
+          CI_BRANCH: ${{ env.GITHUB_REF }}
+          #CI_PULL_REQUEST: ${{ env.GITHUB_RUN_ID }}
         run: |
           CI_REPORTS=spec/reports RAILS_ENV=test COVERAGE=true xvfb-run --server-args="-screen 0 1024x768x24" bundle exec rake ci:setup:rspec spec
       - name: Push
         run: |
-          testspace @.testspace.txt
+          testspace @.testspace.txt --link=coveralls
         if: always()
