@@ -35,12 +35,12 @@ jobs:
       - name: Test
         env:
           CI_NAME: github
-          CI_BUILD_NUMBER: ${{ env.GITHUB_RUN_NUMBER }}
-          CI_JOB_ID: ${{ env.GITHUB_RUN_ID }}
-          CI_BUILD_URL: "${{ env.GITHUB_SERVER_URL }}/${{ env.GITHUB_REPOSITORY }}/actions/runs/${{ env.GITHUB_RUN_ID }}"
-          CI_BRANCH: ${{ env.GITHUB_REF }}
-          #CI_PULL_REQUEST: ${{ env.GITHUB_RUN_ID }}
         run: |
+          export CI_BUILD_NUMBER=${GITHUB_RUN_NUMBER}
+          export CI_JOB_ID=${GITHUB_RUN_ID}
+          export CI_BUILD_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          export CI_BRANCH=${GITHUB_REF#refs/heads/}
+          #export CI_PULL_REQUEST=`jq -r .number "${GITHUB_EVENT_PATH}"`
           CI_REPORTS=spec/reports RAILS_ENV=test COVERAGE=true xvfb-run --server-args="-screen 0 1024x768x24" bundle exec rake ci:setup:rspec spec
       - name: Push
         run: |
