@@ -2,7 +2,7 @@
 if ENV['COVERAGE']
   require 'simplecov-cobertura'
   #SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
-  SimpleCov::Formatter::MultiFormatter.new([
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
     SimpleCov::Formatter::CoberturaFormatter,
     Coveralls::SimpleCov::Formatter
   ])
