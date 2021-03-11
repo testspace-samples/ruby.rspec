@@ -34,5 +34,5 @@ jobs:
           command: CI_REPORTS=spec/reports RAILS_ENV=test COVERAGE=true bundle exec rake ci:setup:rspec spec
       - run:
           name: Send reports to testspace
-          command: testspace @.testspace.txt
+          command: testspace @.testspace.txt --link=coveralls
           when: always
