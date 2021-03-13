@@ -17,6 +17,7 @@ jobs:
       - uses: testspace-com/setup-testspace@v1
         with:
           domain: samples
+          token: ${{ secrets.TESTSPACE_TOKEN }}
       - uses: actions/cache@v2
         with:
           path: vendor/bundle
@@ -45,5 +46,5 @@ jobs:
           CI_REPORTS=spec/reports RAILS_ENV=test COVERAGE=true xvfb-run --server-args="-screen 0 1024x768x24" bundle exec rake ci:setup:rspec spec
       - name: Push
         run: |
-          testspace @.testspace.txt --link=coveralls
+          testspace @.testspace.txt --link="$COVERALLS_REPO_TOKEN@coveralls"
         if: always()
