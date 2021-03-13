@@ -3,6 +3,10 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.3-node-browsers
+    branches:
+      ignore:
+        - non-travis-ci-private
+        - non-travis-ci 
     steps:
       - checkout
       - restore_cache:
